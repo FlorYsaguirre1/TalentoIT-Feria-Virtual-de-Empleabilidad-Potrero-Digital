@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talento IT — Feria virtual de empleo Tech de Argentina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --negro: #111111;
+      --negro-card: #1c1c1c;
+      --lima: #C8D400;
+      --lima-dim: rgba(200,212,0,0.10);
+      --lima-mid: rgba(200,212,0,0.30);
+      --blanco: #ffffff;
+      --gris: #888888;
+      --gris-borde: #272727;
+      --gris-texto: #aaaaaa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--negro);
+      color: var(--blanco);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 56px;
+      background: rgba(17,17,17,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gris-borde);
+    }
+
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .nav-logo {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      color: var(--blanco);
+    }
+    .nav-logo span { color: var(--lima); }
+    .nav-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-link {
+      font-size: 0.82rem;
+      color: var(--gris-texto);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--blanco); }
+
+    .btn-nav {
+      background: var(--lima);
+      color: var(--negro);
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-nav:hover { background: #d9e600; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 160px 56px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--gris-borde) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gris-borde) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: 0.5;
+    }
+
+    .hero-glow {
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(200,212,0,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .accenture-badge {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--negro-card);
+      border: 1px solid var(--gris-borde);
+      padding: 8px 16px 8px 10px;
+      margin-bottom: 40px;
+      width: fit-content;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--lima);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .badge-text {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gris-texto);
+    }
+    .badge-text strong {
+      color: var(--blanco);
+      font-weight: 600;
+    }
+
+    .hero-inner { position: relative; }
+
+    h1 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 36px;
+    }
+    h1 .line-accent { color: var(--lima); display: block; }
+    h1 .line-normal { display: block; }
+
+    .hero-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-top: 16px;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--gris-texto);
+      line-height: 1.75;
+      max-width: 480px;
+    }
+
+    .hero-actions-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .btn-primary {
+      background: var(--lima);
+      color: var(--negro);
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+    .btn-primary:hover { background: #d9e600; transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--gris-texto);
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      padding: 14px 32px;
+      border: 1px solid var(--gris-borde);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+    .btn-ghost:hover { border-color: var(--lima-mid); color: var(--blanco); }
+
+    .hero-disclaimer {
+      font-size: 0.72rem;
+      color: var(--gris);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      border-top: 1px solid var(--gris-borde);
+      border-bottom: 1px solid var(--gris-borde);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-cell {
+      padding: 36px 40px;
+      border-right: 1px solid var(--gris-borde);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 2.6rem;
+      color: var(--lima);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--gris); letter-spacing: 0.04em; }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gris-borde);
+      background: #0d0d0d;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #444;
+      padding: 0 28px;
+      border-right: 1px solid var(--gris-borde);
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .marquee-item:hover { color: var(--lima); }
+
+    /* ── LAYOUT BASE ── */
+    .section { padding: 96px 56px; }
+    .section-sm { padding: 72px 56px; }
+
+    .eyebrow {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--lima);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .eyebrow::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 40px;
+      background: var(--lima);
+      opacity: 0.5;
+    }
+
+    h2 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+      line-height: 1.08;
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      color: var(--gris-texto);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 52px;
+    }
+
+    /* ── MENSAJES / WHY ── */
+    .pitch-section { background: #0d0d0d; }
+    .pitch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 0;
+    }
+    .pitch-card {
+      background: var(--negro-card);
+      border: 1px solid var(--gris-borde);
+      padding: 44px 36px;
+      transition: border-color 0.25s, background 0.25s;
+      position: relative;
+    }
+    .pitch-card:hover {
+      border-color: var(--lima-mid);
+      background: #202020;
+    }
+    .pitch-card-line {
+      position: absolute;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--lima);
+      transition: width 0.35s ease;
+    }
+    .pitch-card:hover .pitch-card-line { width: 100%; }
+
+    /* SVG icons */
+    .pitch-icon {
+      width: 36px; height: 36px;
+      margin-bottom: 24px;
+      color: var(--lima);
+    }
+    .pitch-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+    .pitch-text { color: #909090; font-size: 0.91rem; line-height: 1.75; }
+
+    /* ── OPORTUNIDAD FEDERAL ── */
+    .federal-section {
+      background: var(--negro);
+      border-top: 1px solid var(--gris-borde);
+      border-bottom: 1px solid var(--gris-borde);
+    }
+    .federal-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .federal-visual {
+      position: relative;
+      height: 340px;
+      border: 1px solid var(--gris-borde);
+      overflow: hidden;
+      background: var(--negro-card);
+    }
+    .federal-map-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--gris-borde) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gris-borde) 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.4;
+    }
+    .federal-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .federal-circle {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 1px solid var(--lima-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .federal-circle::before {
+      content: '';
+      position: absolute;
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      border: 1px solid var(--lima-mid);
+    }
+    .federal-circle::after {
+      content: '';
+      position: absolute;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--lima);
+    }
+    .federal-label {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .perfiles-list { display: flex; flex-direction: column; gap: 2px; }
+    .perfil-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      border: 1px solid var(--gris-borde);
+      background: var(--negro-card);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .perfil-item:hover {
+      border-color: var(--lima-mid);
+      background: #1e1e1e;
+    }
+    .perfil-icon {
+      width: 28px; height: 28px;
+      color: var(--lima);
+      flex-shrink: 0;
+    }
+    .perfil-info {}
+    .perfil-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .perfil-desc { font-size: 0.82rem; color: var(--gris); }
+
+    /* ── CÓMO FUNCIONA ── */
+    .how-section { background: #0d0d0d; }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--gris-borde);
+    }
+    .how-step {
+      padding: 44px 32px;
+      border-right: 1px solid var(--gris-borde);
+      position: relative;
+    }
+    .how-step:last-child { border-right: none; }
+    .step-line {
+      position: absolute;
+      top: 0; right: -1px;
+      width: 1px;
+      height: 0;
+      background: var(--lima);
+      transition: height 0.4s ease;
+    }
+    .how-step:hover .step-line { height: 100%; }
+    .step-num {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 3.5rem;
+      line-height: 1;
+      color: rgba(200,212,0,0.1);
+      margin-bottom: 20px;
+      transition: color 0.3s;
+    }
+    .how-step:hover .step-num { color: rgba(200,212,0,0.2); }
+    .step-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 600;
+      font-size: 0.96rem;
+      margin-bottom: 10px;
+    }
+    .step-text { color: #888; font-size: 0.88rem; line-height: 1.7; }
+
+    /* ── EMPRESAS GRID ── */
+    .logos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 2px;
+    }
+    .logo-cell {
+      border: 1px solid var(--gris-borde);
+      padding: 26px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: #484848;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      text-align: center;
+    }
+    .logo-cell:hover {
+      color: var(--lima);
+      border-color: var(--lima-mid);
+      background: var(--lima-dim);
+    }
+    .logo-cell.featured {
+      border-color: rgba(200,212,0,0.4);
+      color: #aaa;
+      background: rgba(200,212,0,0.05);
+    }
+    .logo-cell.add-yours {
+      color: var(--lima);
+      border-color: var(--lima-mid);
+      background: var(--lima-dim);
+      font-size: 0.75rem;
+    }
+
+    /* ── APOYO INSTITUCIONAL ── */
+    .apoyo-section { background: #0d0d0d; border-top: 1px solid var(--gris-borde); }
+    .apoyo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .apoyo-card {
+      background: var(--negro-card);
+      border: 1px solid var(--gris-borde);
+      padding: 44px 40px;
+    }
+    .apoyo-tag {
+      display: inline-block;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--negro);
+      background: var(--lima);
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+    .apoyo-card h3 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .apoyo-card p { color: #909090; font-size: 0.9rem; line-height: 1.75; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      text-align: center;
+      padding: 120px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center bottom, rgba(200,212,0,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; max-width: 700px; margin: 0 auto; }
+    .cta-section h2 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+    .cta-section p {
+      color: var(--gris-texto);
+      font-size: 1.05rem;
+      margin-bottom: 44px;
+      line-height: 1.8;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-nota {
+      margin-top: 28px;
+      font-size: 0.76rem;
+      color: #444;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--gris-borde);
+      padding: 36px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #444;
+    }
+    .footer-brand span { color: var(--lima); }
+    .footer-meta { font-size: 0.75rem; color: #383838; }
+    .footer-orgs {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .footer-org {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-right .nav-link { display: none; }
+      .hero { padding: 120px 24px 64px; }
+      .hero-columns { grid-template-columns: 1fr; gap: 32px; }
+      .hero-actions-col { align-items: flex-start; }
+      .btn-primary, .btn-ghost { width: auto; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-cell:nth-child(2) { border-right: none; }
+      .section, .section-sm { padding: 64px 24px; }
+      .pitch-grid { grid-template-columns: 1fr; }
+      .federal-layout { grid-template-columns: 1fr; gap: 40px; }
+      .how-steps { grid-template-columns: 1fr 1fr; }
+      .how-step:nth-child(2) { border-right: none; }
+      .how-step:nth-child(3) { border-top: 1px solid var(--gris-borde); }
+      .apoyo-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; }
+      footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.8rem; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .how-step { border-right: none; border-bottom: 1px solid var(--gris-borde); }
+      .how-step:last-child { border-bottom: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      .badge-dot { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">TALENTO <span>IT</span></div>
+    <div class="nav-sub">Feria virtual de empleo Tech · Argentina</div>
+  </div>
+  <div class="nav-right">
+    <a href="#como-funciona" class="nav-link">Cómo funciona</a>
+    <a href="#perfiles" class="nav-link">Candidatos</a>
+    <a href="#contacto" class="btn-nav">Participar</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+
+    <div class="accenture-badge">
+      <div class="badge-dot"></div>
+      <div class="badge-text"><strong>Accenture</strong> ya confirmó su participación — sumá tu empresa</div>
+    </div>
+
+    <h1>
+      <span class="line-normal">El talento IT</span>
+      <span class="line-normal">de Argentina</span>
+      <span class="line-accent">te está esperando.</span>
+    </h1>
+
+    <div class="hero-columns">
+      <p class="hero-desc">
+        Talento IT es la feria virtual de empleo tech más federal del país. Conectamos empresas de tecnología con cientos de candidatos listos para su primer o próximo rol IT, desde cualquier provincia de Argentina.
+      </p>
+      <div class="hero-actions-col">
+        <a href="#contacto" class="btn-primary">Quiero sumar mi empresa</a>
+        <a href="#como-funciona" class="btn-ghost">Ver cómo funciona</a>
+        <p class="hero-disclaimer">Participación sin costo · Gestionado por Potrero Digital</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-bar">
+  <div class="stat-cell">
+    <div class="stat-num">+500</div>
+    <div class="stat-label">Candidatos activos</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">25+</div>
+    <div class="stat-label">Empresas participantes</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Virtual · Sin costo</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">Federal</div>
+    <div class="stat-label">Todo el país · Todo el año</div>
+  </div>
+</div>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Accenture</span>
+    <span class="marquee-item">Globant</span>
+    <span class="marquee-item">Mercado Libre</span>
+    <span class="marquee-item">Banco Galicia</span>
+    <span class="marquee-item">AWS</span>
+    <span class="marquee-item">Google</span>
+    <span class="marquee-item">Santander</span>
+    <span class="marquee-item">IBM</span>
+    <span class="marquee-item">Oracle</span>
+    <span class="marquee-item">BBVA</span>
+    <span class="marquee-item">Telecom</span>
+    <span class="marquee-item">Naranja X</span>
+    <span class="marquee-item">Despegar</span>
+    <span class="marquee-item">Ualá</span>
+    <span class="marquee-item">Rappi</span>
+    <span class="marquee-item">Accenture</span>
+    <span class="marquee-item">Globant</span>
+    <span class="marquee-item">Mercado Libre</span>
+    <span class="marquee-item">Banco Galicia</span>
+    <span class="marquee-item">AWS</span>
+    <span class="marquee-item">Google</span>
+    <span class="marquee-item">Santander</span>
+    <span class="marquee-item">IBM</span>
+    <span class="marquee-item">Oracle</span>
+    <span class="marquee-item">BBVA</span>
+    <span class="marquee-item">Telecom</span>
+    <span class="marquee-item">Naranja X</span>
+    <span class="marquee-item">Despegar</span>
+    <span class="marquee-item">Ualá</span>
+    <span class="marquee-item">Rappi</span>
+  </div>
+</div>
+
+<!-- ── POR QUÉ PARTICIPAR ── -->
+<section class="pitch-section section">
+  <div class="eyebrow">Por qué participar</div>
+  <h2>Razones que pesan<br>a la hora de decidir</h2>
+  <p class="section-body">
+    Talento IT no es un portal de empleo más. Es el espacio donde las empresas que apuestan por el talento emergente encuentran a los candidatos que el mercado todavía no está mirando.
+  </p>
+
+  <div class="pitch-grid">
+
+    <div class="pitch-card">
+      <div class="pitch-card-line"></div>
+      <svg class="pitch-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="14" cy="12" r="5"/>
+        <path d="M4 28c0-5.523 4.477-10 10-10"/>
+        <circle cx="26" cy="22" r="4"/>
+        <path d="M22 30c0-3.314 1.79-6 4-6s4 2.686 4 6"/>
+        <line x1="20" y1="14" x2="32" y2="14"/>
+        <line x1="26" y1="8" x2="26" y2="20"/>
+      </svg>
+      <div class="pitch-title">Pipeline de talento que nadie más tiene</div>
+      <p class="pitch-text">
+        Accedés a perfiles motivados, formados y listos antes de que lleguen a los canales tradicionales. Son los que el mercado va a pelearse el año que viene.
+      </p>
+    </div>
+
+    <div class="pitch-card">
+      <div class="pitch-card-line"></div>
+      <svg class="pitch-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="8" width="28" height="20" rx="1"/>
+        <path d="M4 14h28"/>
+        <circle cx="10" cy="11" r="1.2" fill="currentColor" stroke="none"/>
+        <circle cx="15" cy="11" r="1.2" fill="currentColor" stroke="none"/>
+        <path d="M14 20h8M14 24h5"/>
+      </svg>
+      <div class="pitch-title">Visibilidad de marca empleadora</div>
+      <p class="pitch-text">
+        Tu empresa aparece frente a una comunidad comprometida con el sector tech. Employer branding real, sin inversión en publicidad.
+      </p>
+    </div>
+
+    <div class="pitch-card">
+      <div class="pitch-card-line"></div>
+      <svg class="pitch-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 4L4 12v12l14 8 14-8V12z"/>
+        <path d="M18 4v20M4 12l14 8 14-8"/>
+      </svg>
+      <div class="pitch-title">Cero fricción para tu equipo</div>
+      <p class="pitch-text">
+        El equipo de Potrero Digital carga y gestiona todo en la plataforma. Solo compartís los datos de tu empresa y tus búsquedas.
+      </p>
+    </div>
+
+    <div class="pitch-card">
+      <div class="pitch-card-line"></div>
+      <svg class="pitch-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="18" r="14"/>
+        <ellipse cx="18" cy="18" rx="6" ry="14"/>
+        <line x1="4" y1="18" x2="32" y2="18"/>
+        <path d="M7 10h22M7 26h22"/>
+      </svg>
+      <div class="pitch-title">Alcance federal, 100% virtual</div>
+      <p class="pitch-text">
+        Candidatos de todas las provincias, sin logística ni costo de evento. La feria está disponible todo el año, desde cualquier dispositivo.
+      </p>
+    </div>
+
+    <div class="pitch-card">
+      <div class="pitch-card-line"></div>
+      <svg class="pitch-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 32s-13-8-13-18a13 13 0 0 1 26 0c0 10-13 18-13 18z"/>
+        <circle cx="18" cy="14" r="4"/>
+      </svg>
+      <div class="pitch-title">Compromiso con el impacto social</div>
+      <p class="pitch-text">
+        Participar es una declaración concreta: tu empresa apuesta por la inclusión laboral en el sector IT. Cada búsqueda que publicás abre una puerta real.
+      </p>
+    </div>
+
+    <div class="pitch-card">
+      <div class="pitch-card-line"></div>
+      <svg class="pitch-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="4,28 12,18 18,22 26,10 32,14"/>
+        <circle cx="32" cy="14" r="2" fill="currentColor" stroke="none"/>
+      </svg>
+      <div class="pitch-title">Diversidad que construye equipos más fuertes</div>
+      <p class="pitch-text">
+        Perfiles de distintos orígenes, trayectorias y provincias. La diversidad no es un slogan acá: es el ADN de la comunidad Potrero Digital.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── OPORTUNIDAD FEDERAL ── -->
+<section class="federal-section section" id="perfiles">
+  <div class="federal-layout">
+    <div>
+      <div class="eyebrow">Alcance federal</div>
+      <h2>Una oportunidad para todos los perfiles IT del país</h2>
+      <p class="section-body">
+        Talento IT no tiene límite geográfico ni de experiencia. Llegás a candidatos que recién comienzan, a profesionales con recorrido y a personas que eligieron reconvertirse. Toda esa diversidad, en un solo lugar.
+      </p>
+      <div class="perfiles-list">
+        <div class="perfil-item">
+          <svg class="perfil-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="8" r="4"/>
+            <path d="M6 24c0-4.418 3.582-8 8-8s8 3.582 8 8"/>
+            <line x1="19" y1="10" x2="25" y2="10"/>
+            <line x1="22" y1="7" x2="22" y2="13"/>
+          </svg>
+          <div class="perfil-info">
+            <div class="perfil-title">Nuevos en IT</div>
+            <div class="perfil-desc">Egresados de Potrero Digital con formación en programación, testing, datos y cloud</div>
+          </div>
+        </div>
+        <div class="perfil-item">
+          <svg class="perfil-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="8" r="4"/>
+            <path d="M6 24c0-4.418 3.582-8 8-8s8 3.582 8 8"/>
+            <polyline points="10,15 13,18 18,13"/>
+          </svg>
+          <div class="perfil-info">
+            <div class="perfil-title">Con experiencia</div>
+            <div class="perfil-desc">Profesionales IT en búsqueda activa de nuevos proyectos y desafíos</div>
+          </div>
+        </div>
+        <div class="perfil-item">
+          <svg class="perfil-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="8" r="4"/>
+            <path d="M6 24c0-4.418 3.582-8 8-8s8 3.582 8 8"/>
+            <path d="M20 16l4 4-4 4"/>
+            <line x1="16" y1="20" x2="24" y2="20"/>
+          </svg>
+          <div class="perfil-info">
+            <div class="perfil-title">En reconversión laboral</div>
+            <div class="perfil-desc">Adultos de otras industrias que apostaron al IT — con madurez y motivación fuera de lo común</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="federal-visual">
+      <div class="federal-map-bg"></div>
+      <div class="federal-center">
+        <div class="federal-circle"></div>
+        <div class="federal-label">Cobertura nacional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO FUNCIONA ── -->
+<section class="how-section section" id="como-funciona">
+  <div class="eyebrow">Proceso</div>
+  <h2>Simple de arrancar,<br>potente desde el día uno</h2>
+  <p class="section-body">
+    Tu equipo no necesita hacer nada técnico. En menos de 48 horas tu empresa está visible para cientos de candidatos.
+  </p>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-line"></div>
+      <div class="step-num">01</div>
+      <div class="step-title">Nos contactás</div>
+      <p class="step-text">Completás un formulario breve con los datos de tu empresa y las posiciones que querés publicar.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-line"></div>
+      <div class="step-num">02</div>
+      <div class="step-title">Nosotros cargamos todo</div>
+      <p class="step-text">El equipo de Potrero Digital sube tu perfil a la plataforma. Revisás y aprobás antes de que salga.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-line"></div>
+      <div class="step-num">03</div>
+      <div class="step-title">Los candidatos te encuentran</div>
+      <p class="step-text">Tu empresa aparece en la feria. Los postulantes exploran tu perfil y aplican a tus búsquedas abiertas.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-line"></div>
+      <div class="step-num">04</div>
+      <div class="step-title">El proceso es tuyo</div>
+      <p class="step-text">Las postulaciones llegan directo a tu equipo de selección. Desde ahí, manejás todo como siempre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── EMPRESAS ── -->
+<section class="section">
+  <div class="eyebrow">Comunidad</div>
+  <h2>Ya confirmaron su participación</h2>
+  <p class="section-body">
+    Empresas líderes de tecnología, finanzas y servicios digitales ya eligieron Talento IT para conectar con el próximo talento del sector.
+  </p>
+  <div class="logos-grid">
+    <div class="logo-cell featured">Accenture</div>
+    <div class="logo-cell">Globant</div>
+    <div class="logo-cell">Mercado Libre</div>
+    <div class="logo-cell">Banco Galicia</div>
+    <div class="logo-cell">AWS</div>
+    <div class="logo-cell">Google</div>
+    <div class="logo-cell">Santander</div>
+    <div class="logo-cell">IBM</div>
+    <div class="logo-cell">Oracle</div>
+    <div class="logo-cell">BBVA</div>
+    <div class="logo-cell">Telecom</div>
+    <div class="logo-cell">Naranja X</div>
+    <div class="logo-cell">Despegar</div>
+    <div class="logo-cell">Nación Servicios</div>
+    <div class="logo-cell">Ualá</div>
+    <div class="logo-cell">Lemon Cash</div>
+    <div class="logo-cell">Rappi</div>
+    <div class="logo-cell">PedidosYa</div>
+    <div class="logo-cell">Baufest</div>
+    <div class="logo-cell">Tata Consultancy</div>
+    <div class="logo-cell">Capgemini</div>
+    <div class="logo-cell">SAP</div>
+    <div class="logo-cell add-yours">+ Tu empresa aquí</div>
+  </div>
+</section>
+
+<!-- ── APOYO INSTITUCIONAL ── -->
+<section class="apoyo-section section-sm">
+  <div class="eyebrow">Respaldo institucional</div>
+  <h2>Una iniciativa con peso</h2>
+  <p class="section-body">
+    Talento IT está respaldado por organizaciones con trayectoria probada en empleabilidad, educación y tecnología.
+  </p>
+  <div class="apoyo-grid">
+    <div class="apoyo-card">
+      <div class="apoyo-tag">Organización principal</div>
+      <h3>Potrero Digital</h3>
+      <p>
+        Organización de educación tecnológica con presencia en toda Argentina. Formamos a los candidatos que van a encontrar en Talento IT — con la misma rigurosidad y compromiso de siempre.
+      </p>
+    </div>
+    <div class="apoyo-card">
+      <div class="apoyo-tag">Con el apoyo de</div>
+      <h3>Fundación Compromiso</h3>
+      <p>
+        Una de las organizaciones de mayor trayectoria en Argentina en inclusión laboral y desarrollo de capital humano. Su respaldo garantiza seriedad, escala y articulación institucional.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="contacto">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="eyebrow" style="justify-content:center;">Sumate ahora</div>
+    <h2>El talento que buscás<br><span style="color:var(--lima)">ya está formado.</span></h2>
+    <p>
+      Miles de candidatos IT de todo el país van a buscar su próximo trabajo en Talento IT. Las empresas que lleguen primero son las que se van a quedar con los mejores perfiles.
+    </p>
+    <div class="cta-buttons">
+      <a href="mailto:talentoit@potrerodigital.org?subject=Quiero participar en Talento IT" class="btn-primary">Quiero participar</a>
+      <a href="https://www.potrerodigital.org" class="btn-ghost" target="_blank" rel="noopener">Conocer Potrero Digital</a>
+    </div>
+    <p class="cta-nota">Participación sin costo para empresas · Respuesta en menos de 48 horas</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>
+    <div class="footer-brand">TALENTO <span>IT</span></div>
+    <div class="footer-meta" style="margin-top:4px;">Una iniciativa de Potrero Digital con el apoyo de Fundación Compromiso</div>
+  </div>
+  <div class="footer-orgs">
+    <span class="footer-org">Potrero Digital</span>
+    <span style="color:#2a2a2a;">|</span>
+    <span class="footer-org">Fundación Compromiso</span>
+    <span style="color:#2a2a2a;">|</span>
+    <span class="footer-org">Argentina</span>
+  </div>
+</footer>
+
+</body>
+</html>
